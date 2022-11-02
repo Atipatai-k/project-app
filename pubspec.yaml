@@ -50,6 +50,7 @@ dependencies:
   lite_rolling_switch: ^1.0.0
   get: ^4.1.4
   get_storage: ^2.0.2
+  getflutter: ^1.0.11
   
 dev_dependencies:
   flutter_test:

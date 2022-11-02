@@ -24,17 +24,17 @@ bool isSwitched = false;
   
 
   void LedOn() async {
-    await _statusRef.child("Status").update({'status': 'ON'});
+    await _statusRef.child("Status1").update({'status': 'ON'});
   }
 
   void LedOFF() async {
-    await _statusRef.child("Status").update({'status': 'OFF'});
+    await _statusRef.child("Status1").update({'status': 'OFF'});
   }
 
-  void getStatus() async {
+  void getStatus1() async {
       final newValue = await FirebaseDatabase.instance
       .ref()
-      .child("Switch").child("Status")
+      .child("Switch").child("Status1")
       .orderByChild("status");
 
     setState(() {
@@ -62,7 +62,7 @@ bool isSwitched = false;
   
   @override
   void initState() {
-    getStatus(); 
+    getStatus1(); 
     super.initState();
       if(switchData.read('isSwitched') != null){
         setState(() {
@@ -105,7 +105,7 @@ bool isSwitched = false;
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Status",
+                        "Status1",
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
@@ -117,7 +117,7 @@ bool isSwitched = false;
                       Flexible(
                         child: new FirebaseAnimatedList(
                             shrinkWrap: true,
-                            query: _statusRef.child("Status").orderByChild("status"),
+                            query: _statusRef.child("Status1").orderByChild("status"),
                             itemBuilder: ((context, snapshot, animation, index) {
                               return new ListTile(
                                 title: new Text(
@@ -157,9 +157,8 @@ bool isSwitched = false;
                       Flexible(
                         child: new FirebaseAnimatedList(
                             shrinkWrap: true,
-                            query: _humidityRef
-                                .orderByChild("id")
-                                .equalTo("-NF1pC1zdMCVBNmkuleC"),
+                            query: _humidityRef.child("Humidity1")
+                            ,
                             itemBuilder: ((context, snapshot, animation, index) {
                               return new ListTile(
                                 title: new Text(
@@ -201,8 +200,7 @@ bool isSwitched = false;
                         child: new FirebaseAnimatedList(
                             shrinkWrap: true,
                             query: _humidityRef
-                                .orderByChild("id")
-                                .equalTo("-NF1pEkwV2MIOoQK-OfX"),
+                                .child("Humidity2"),
                             itemBuilder: ((context, snapshot, animation, index) {
                               return new ListTile(
                                 title: new Text(

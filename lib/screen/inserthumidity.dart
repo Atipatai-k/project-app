@@ -12,6 +12,7 @@ class Inserthumidity extends StatefulWidget {
 
 class _InserthumidityState extends State<Inserthumidity> {
   var humidityController = new TextEditingController();
+  var iddocumentController = new TextEditingController();
 
   final databaseRef = FirebaseDatabase.instance.ref();
 
@@ -39,7 +40,14 @@ class _InserthumidityState extends State<Inserthumidity> {
                   decoration: InputDecoration(
                       labelText: 'Humidity', border: OutlineInputBorder()),
                 ),
-
+                SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: iddocumentController,
+                  decoration: InputDecoration(
+                      labelText: 'IDdocument', border: OutlineInputBorder()),
+                ),
                 SizedBox(
                   height: 50,
                 ),
@@ -49,7 +57,8 @@ class _InserthumidityState extends State<Inserthumidity> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (humidityController.text.isNotEmpty) {
-                        insertData(humidityController.text);
+                        insertData(
+                            humidityController.text, iddocumentController.text);
                         Fluttertoast.showToast(
                             msg: "Insert Success", gravity: ToastGravity.TOP);
                         Navigator.pushReplacement(context,
@@ -75,10 +84,10 @@ class _InserthumidityState extends State<Inserthumidity> {
     );
   }
 
-  void insertData(String humidity) {
-    String? key = databaseRef.child("Humidity").push().key;
-    databaseRef.child("Humidity").child(key!).set({
-      'id' : key,
+  void insertData(String humidity, String idhumidity) {
+/*     String? key = databaseRef.child("Humidity").push().key; */
+    databaseRef.child("Humidity").child(idhumidity).set({
+/*       'id' : key, */
       'values': humidity,
     });
     humidityController.clear();

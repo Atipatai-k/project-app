@@ -159,9 +159,7 @@ bool _isSwitched = false;
                       Flexible(
                         child: new FirebaseAnimatedList(
                             shrinkWrap: true,
-                            query: _humidityRef
-                                .orderByChild("id")
-                                .equalTo("-NF1pG6J2JYyWISW0_1c"),
+                            query: _humidityRef.child("Humidity3"),
                             itemBuilder: ((context, snapshot, animation, index) {
                               return new ListTile(
                                 title: new Text(
@@ -202,9 +200,7 @@ bool _isSwitched = false;
                       Flexible(
                         child: new FirebaseAnimatedList(
                             shrinkWrap: true,
-                            query: _humidityRef
-                                .orderByChild("id")
-                                .equalTo("-NF1pIhvPhBA_C0aOqSY"),
+                            query: _humidityRef.child("Humidity4"),
                             itemBuilder: ((context, snapshot, animation, index) {
                               return new ListTile(
                                 title: new Text(

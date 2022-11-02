@@ -16,6 +16,7 @@ class _RealtimeInsertState extends State<RealtimeInsert> {
   var loraController = new TextEditingController();
   var sensor1Controller = new TextEditingController();
   var sensor2Controller = new TextEditingController();
+  var docController = new TextEditingController();
 
   final databaseRef = FirebaseDatabase.instance.ref();
 
@@ -77,6 +78,14 @@ class _RealtimeInsertState extends State<RealtimeInsert> {
                       labelText: 'Sensor2ID', border: OutlineInputBorder()),
                 ),
                 SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: docController,
+                  decoration: InputDecoration(
+                      labelText: 'Documentname', border: OutlineInputBorder()),
+                ),
+                SizedBox(
                   height: 50,
                 ),
                 SizedBox(
@@ -94,7 +103,9 @@ class _RealtimeInsertState extends State<RealtimeInsert> {
                             arduionController.text,
                             loraController.text,
                             sensor1Controller.text,
-                            sensor2Controller.text);
+                            sensor2Controller.text,
+                            docController.text,
+                            );
                         Fluttertoast.showToast(
                             msg: "Insert Success", gravity: ToastGravity.TOP);
                         Navigator.pushReplacement(context,
@@ -122,8 +133,8 @@ class _RealtimeInsertState extends State<RealtimeInsert> {
   }
 
   void insertData(
-      String id, String arduino, String lora, String sensor1, String sensor2) {
-    databaseRef.child("Controller").push().set({
+      String id, String arduino, String lora, String sensor1, String sensor2,String doc) {
+    databaseRef.child("Controller").child(doc).set({
       'ControllerID': id,
       'ArduinoID': arduino,
       'LoraID': lora,

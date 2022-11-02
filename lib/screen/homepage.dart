@@ -1,5 +1,5 @@
 import 'package:app2/model/alertdialog.dart';
-import 'package:app2/screen/displaysetting2.dart';
+import 'package:app2/screen/inserthumidity.dart';
 import 'package:app2/screen/login.dart';
 import 'package:app2/screen/newformscreen.dart';
 import 'package:app2/screen/newformscreen2.dart';
@@ -26,7 +26,7 @@ class _homepageState extends State<homepage> {
         title: Text("Automatic Watering Durian"),
         actions: [ 
           logoutalert(LoginScreen()),
-          testwindow(RealtimeDisplaysetting2()),
+          testwindow(Inserthumidity()),
         ],
       ),
       body: Center(
